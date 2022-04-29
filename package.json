@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "gh-pages": "ng build --base-href 'https://desirdes.github.io/ProjectManager_Prototype/' --prod && npx ngh --dir=www/"
   },
   "private": true,
   "dependencies": {
