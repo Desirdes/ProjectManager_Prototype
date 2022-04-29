@@ -1,0 +1,7 @@
+{
+  "name": "ProjectManager-Prototype",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

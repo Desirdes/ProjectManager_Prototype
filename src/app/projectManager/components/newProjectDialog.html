@@ -1,0 +1,383 @@
+<div style="min-width: 800px; max-width: 90vw; max-height: 90vh;">
+    <h3 mat-dialog-title>New Project</h3>
+    <mat-dialog-content>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item style="width: 100%;">
+                    <ion-label>Project Title:</ion-label>
+                    <ion-input placeholder="Title..." [(ngModel)]="this.Title"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item style="width: 100%;">
+                    <ion-label>Project Description:</ion-label>
+                    <ion-textarea  placeholder="Description..." [(ngModel)]="this.Description"></ion-textarea>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6">
+                <ion-item style="width: 100%;">
+                    <ion-label>Start Date:</ion-label>
+                    <ion-input placeholder="MM/DD/YYYY" [(ngModel)]="this.StartDate"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item style="width: 100%;">
+                    <ion-label>End Date:</ion-label>
+                    <ion-input placeholder="MM/DD/YYYY" [(ngModel)]="this.EndDate"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Priority</mat-label>
+                    <mat-select [(ngModel)]="this.Priority" name="priority">
+                        <mat-option value="Very High">
+                            Very High
+                        </mat-option>
+                        <mat-option value="High">
+                            High
+                        </mat-option>
+                        <mat-option value="Medium">
+                            Medium
+                        </mat-option>
+                        <mat-option value="Low">
+                            Low
+                        </mat-option>
+                        <mat-option value="Very Low">
+                            Very Low
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+            <ion-col size="6">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="this.Status" name="status">
+                        <mat-option value="To-Do">
+                            To-Do
+                        </mat-option>
+                        <mat-option value="In-Progress">
+                            In-Progress
+                        </mat-option>
+                        <mat-option value="In Review">
+                            In Review
+                        </mat-option>
+                        <mat-option value="Finished">
+                            Finished
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Project Owner</mat-label>
+                    <mat-select [(ngModel)]="this.Owner" name="owner">
+                        <mat-option *ngFor="let user of this.projectManagerProvider.Users" [value]="user">
+                            {{user.Name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Project Members</mat-label>
+                    <mat-select multiple [(ngModel)]="this.Members" name="members">
+                        <mat-option *ngFor="let user of this.projectManagerProvider.Users" [value]="{UserInfo:user, Role: 'Member', TotalHoursSpent: 0, SpentHoursPerDate: []}">
+                            {{user.Name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <!--spacer column-->
+            </ion-col>
+            <ion-col size="auto">
+                <ion-button (click)="this.onAddRiskClick()">
+                    + Add Risk
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let risk of this.Risks; let i = index;">
+            <ion-col size="6">
+                <ion-item style="width: 100%;">
+                    <ion-label>Risk {{i + 1}}:</ion-label>
+                    <ion-textarea placeholder="Risk..." [(ngModel)]="risk.Description" ></ion-textarea>
+                </ion-item>
+            </ion-col>
+            <ion-col size="3">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Probability</mat-label>
+                    <mat-select [(ngModel)]="risk.Probability" name="probability">
+                        <mat-option value="Very Likely">
+                            Very Likely
+                        </mat-option>
+                        <mat-option value="Likely">
+                            Likely
+                        </mat-option>
+                        <mat-option value="May Occur">
+                            May Occur
+                        </mat-option>
+                        <mat-option value="Unlikely">
+                            Unlikely
+                        </mat-option>
+                        <mat-option value="Very Unlikely">
+                            Very Unlikely
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+            <ion-col size="3">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="risk.Status" name="status">
+                        <mat-option value="Open">
+                            Open
+                        </mat-option>
+                        <mat-option value="Closed-Diverted">
+                            Closed-Diverted
+                        </mat-option>
+                        <mat-option value="Pending Close">
+                            Pending Close
+                        </mat-option>
+                        <mat-option value="Realized">
+                            Realized
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <!--spacer column-->
+            </ion-col>
+            <ion-col size="auto">
+                <ion-button (click)="this.onAddGoalClick()">
+                    + Add Goal
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let goal of this.Goals; let i = index;">
+            <ion-col size="9">
+                <ion-item style="width: 100%;">
+                    <ion-label>Goal {{i + 1}}:</ion-label>
+                    <ion-textarea placeholder="Goal..." [(ngModel)]="goal.Description" ></ion-textarea>
+                </ion-item>
+            </ion-col>
+            <ion-col size="3">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Priority</mat-label>
+                    <mat-select [(ngModel)]="goal.Priority" name="priority">
+                        <mat-option value="Very High">
+                            Very High
+                        </mat-option>
+                        <mat-option value="High">
+                            High
+                        </mat-option>
+                        <mat-option value="Medium">
+                            Medium
+                        </mat-option>
+                        <mat-option value="Low">
+                            Low
+                        </mat-option>
+                        <mat-option value="Very Low">
+                            Very Low
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <!--spacer column-->
+            </ion-col>
+            <ion-col size="auto">
+                <ion-button (click)="this.onAddFunctionalRequirementClick()">
+                    + Add Functional Requirement
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let req of this.FunctionalRequirements; let i = index;">
+            <ion-col size="12">
+                <ion-label>Functional Requirement {{i + 1}}:</ion-label>
+                <br>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item style="width: 100%;">
+                            <ion-label>Title:</ion-label>
+                            <ion-input placeholder="Title..." [(ngModel)]="req.Title"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item style="width: 100%;">
+                            <ion-label>Description:</ion-label>
+                            <ion-textarea  placeholder="Description..." [(ngModel)]="req.Description"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="6">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Priority</mat-label>
+                            <mat-select [(ngModel)]="req.Priority" name="priority">
+                                <mat-option value="Very High">
+                                    Very High
+                                </mat-option>
+                                <mat-option value="High">
+                                    High
+                                </mat-option>
+                                <mat-option value="Medium">
+                                    Medium
+                                </mat-option>
+                                <mat-option value="Low">
+                                    Low
+                                </mat-option>
+                                <mat-option value="Very Low">
+                                    Very Low
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                    <ion-col size="6">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="req.Status" name="status">
+                                <mat-option value="To-Do">
+                                    To-Do
+                                </mat-option>
+                                <mat-option value="In-Progress">
+                                    In-Progress
+                                </mat-option>
+                                <mat-option value="In Review">
+                                    In Review
+                                </mat-option>
+                                <mat-option value="Finished">
+                                    Finished
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Task Members</mat-label>
+                            <mat-select multiple [(ngModel)]="req.Members" name="members">
+                                <mat-option *ngFor="let user of this.projectManagerProvider.Users" [value]="{UserInfo:user, Role: 'Member', TotalHoursSpent: 0, SpentHoursPerDate: []}">
+                                    {{user.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <!--spacer column-->
+            </ion-col>
+            <ion-col size="auto">
+                <ion-button (click)="this.onAddNonFunctionalRequirementClick()">
+                    + Add Non-Functional Requirement
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let req of this.NonFunctionalRequirements; let i = index;">
+            <ion-col size="12">
+                <ion-label>Non-Functional Requirement {{i + 1}}:</ion-label>
+                <br>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item style="width: 100%;">
+                            <ion-label>Title:</ion-label>
+                            <ion-input placeholder="Title..." [(ngModel)]="req.Title"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item style="width: 100%;">
+                            <ion-label>Description:</ion-label>
+                            <ion-textarea  placeholder="Description..." [(ngModel)]="req.Description"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="6">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Priority</mat-label>
+                            <mat-select [(ngModel)]="req.Priority" name="priority">
+                                <mat-option value="Very High">
+                                    Very High
+                                </mat-option>
+                                <mat-option value="High">
+                                    High
+                                </mat-option>
+                                <mat-option value="Medium">
+                                    Medium
+                                </mat-option>
+                                <mat-option value="Low">
+                                    Low
+                                </mat-option>
+                                <mat-option value="Very Low">
+                                    Very Low
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                    <ion-col size="6">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="req.Status" name="status">
+                                <mat-option value="To-Do">
+                                    To-Do
+                                </mat-option>
+                                <mat-option value="In-Progress">
+                                    In-Progress
+                                </mat-option>
+                                <mat-option value="In Review">
+                                    In Review
+                                </mat-option>
+                                <mat-option value="Finished">
+                                    Finished
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label>Task Members</mat-label>
+                            <mat-select multiple [(ngModel)]="req.Members" name="members">
+                                <mat-option *ngFor="let user of this.projectManagerProvider.Users" [value]="{UserInfo:user, Role: 'Member', TotalHoursSpent: 0, SpentHoursPerDate: []}">
+                                    {{user.Name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end"> 
+    <ion-button color="danger" (click)="this.onCancelClick()">
+        Cancel
+    </ion-button>
+    <ion-button (click)="this.onCreateClick()">
+        Create
+    </ion-button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,38 @@
+<div style="min-width: 800px; max-width: 90vw; max-height: 90vh;">
+    <h3 mat-dialog-title>Time Spent</h3>
+    <mat-dialog-content>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text>
+                    Total Hours Spent: {{this.data.isRequirement ? this.data.requirementInfo.TotalHoursSpent : this.data.projectInfo.TotalHoursSpent}}
+                </ion-text>
+                <br><br>
+                <div *ngIf="this.data.isRequirement">
+                    <ion-text *ngFor="let member of this.data.requirementInfo.Members">
+                        {{member.UserInfo.Name}} Total Hours: {{member.TotalHoursSpent}}
+                        <br>
+                        <div *ngFor="let activityTime of this.determineActivityTimeSplit(member.SpentHoursPerDate); let i = index;">
+                            {{this.getActivityTypeBasedOffIndex(i)}} Hours: {{activityTime}}
+                        </div>
+                        <br>
+                    </ion-text>
+                </div>
+                <div *ngIf="!this.data.isRequirement">
+                    <ion-text *ngFor="let member of this.data.projectInfo.Members">
+                        {{member.UserInfo.Name}} Total Hours: {{member.TotalHoursSpent}}
+                        <br>
+                        <div *ngFor="let activityTime of this.determineActivityTimeSplit(member.SpentHoursPerDate); let i = index;">
+                            {{this.getActivityTypeBasedOffIndex(i)}} Hours: {{activityTime}}
+                        </div>
+                        <br>
+                    </ion-text>
+                </div>
+            </ion-col>
+        </ion-row>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end"> 
+    <ion-button (click)="this.onCloseClick()">
+        Close
+    </ion-button>
+    </mat-dialog-actions>
+</div>
