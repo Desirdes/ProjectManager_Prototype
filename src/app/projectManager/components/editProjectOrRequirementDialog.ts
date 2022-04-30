@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DateHours, MemberInfo, ProjectInfo, Requirement, UserInfo } from '../provider/project.model';
+import { DateHours, Goal, MemberInfo, ProjectInfo, Requirement, Risk, UserInfo } from '../provider/project.model';
 import { ProjectManagerProvider } from '../provider/projectManager.service';
 
 @Component({
@@ -36,6 +36,16 @@ export class EditProjectOrRequirementDialog {
     public PossibleMembers: MemberInfo[] = this._getPossibleMembers();
 
     // Public Methods
+
+    public onAddRiskClick(){
+      var newRisk = new Risk;
+      this.ProjectRisks.push(newRisk);
+    }
+
+    public onAddGoalClick(){
+      var newGoal = new Goal;
+      this.ProjectGoals.push(newGoal);
+    }
 
     public onSaveClick(){
       if(this.data.isRequirement){
