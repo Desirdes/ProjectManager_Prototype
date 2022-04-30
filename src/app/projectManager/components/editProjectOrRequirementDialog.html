@@ -182,53 +182,62 @@
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <ion-row *ngFor="let risk of this.ProjectRisks; let i = index;">
-                <ion-col size="6">
-                    <ion-item style="width: 100%;">
-                        <ion-label>Risk {{i + 1}}:</ion-label>
-                        <ion-textarea placeholder="Risk..." [(ngModel)]="risk.Description" ></ion-textarea>
-                    </ion-item>
+            <ion-row style="padding: 0px; margin: 0px;" *ngFor="let risk of this.ProjectRisks; let i = index;">
+                <ion-col style="display: flex; align-items: center;">
+                    <ion-row style="width: 100%;">
+                        <ion-col size="6">
+                            <ion-item style="width: 100%;">
+                                <ion-label>Risk {{i + 1}}:</ion-label>
+                                <ion-textarea placeholder="Risk..." [(ngModel)]="risk.Description" ></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <mat-form-field style="width: 100%;" appearance="outline">
+                                <mat-label>Probability</mat-label>
+                                <mat-select [(ngModel)]="risk.Probability" name="probability">
+                                    <mat-option value="Very Likely">
+                                        Very Likely
+                                    </mat-option>
+                                    <mat-option value="Likely">
+                                        Likely
+                                    </mat-option>
+                                    <mat-option value="May Occur">
+                                        May Occur
+                                    </mat-option>
+                                    <mat-option value="Unlikely">
+                                        Unlikely
+                                    </mat-option>
+                                    <mat-option value="Very Unlikely">
+                                        Very Unlikely
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </ion-col>
+                        <ion-col size="3">
+                            <mat-form-field style="width: 100%;" appearance="outline">
+                                <mat-label>Status</mat-label>
+                                <mat-select [(ngModel)]="risk.Status" name="status">
+                                    <mat-option value="Open">
+                                        Open
+                                    </mat-option>
+                                    <mat-option value="Closed-Diverted">
+                                        Closed-Diverted
+                                    </mat-option>
+                                    <mat-option value="Pending Close">
+                                        Pending Close
+                                    </mat-option>
+                                    <mat-option value="Realized">
+                                        Realized
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </ion-col>
+                    </ion-row>
                 </ion-col>
-                <ion-col size="3">
-                    <mat-form-field style="width: 100%;" appearance="outline">
-                        <mat-label>Probability</mat-label>
-                        <mat-select [(ngModel)]="risk.Probability" name="probability">
-                            <mat-option value="Very Likely">
-                                Very Likely
-                            </mat-option>
-                            <mat-option value="Likely">
-                                Likely
-                            </mat-option>
-                            <mat-option value="May Occur">
-                                May Occur
-                            </mat-option>
-                            <mat-option value="Unlikely">
-                                Unlikely
-                            </mat-option>
-                            <mat-option value="Very Unlikely">
-                                Very Unlikely
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </ion-col>
-                <ion-col size="3">
-                    <mat-form-field style="width: 100%;" appearance="outline">
-                        <mat-label>Status</mat-label>
-                        <mat-select [(ngModel)]="risk.Status" name="status">
-                            <mat-option value="Open">
-                                Open
-                            </mat-option>
-                            <mat-option value="Closed-Diverted">
-                                Closed-Diverted
-                            </mat-option>
-                            <mat-option value="Pending Close">
-                                Pending Close
-                            </mat-option>
-                            <mat-option value="Realized">
-                                Realized
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <ion-col style="display: flex; align-items: center;" size="auto">
+                    <ion-button color="danger" (click)="this.onRemoveItemClick(this.ProjectRisks, i)">
+                        Remove
+                    </ion-button>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -241,45 +250,53 @@
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <ion-row *ngFor="let goal of this.ProjectGoals; let i = index;">
-                <ion-col size="9">
-                    <ion-item style="width: 100%;">
-                        <ion-label>Goal {{i + 1}}:</ion-label>
-                        <ion-textarea placeholder="Goal..." [(ngModel)]="goal.Description" ></ion-textarea>
-                    </ion-item>
+            <ion-row style="padding: 0px; margin: 0px;" *ngFor="let goal of this.ProjectGoals; let i = index;">
+                <ion-col style="display: flex; align-items: center;">
+                    <ion-row style="width: 100%;">
+                        <ion-col size="9">
+                            <ion-item style="width: 100%;">
+                                <ion-label>Goal {{i + 1}}:</ion-label>
+                                <ion-textarea placeholder="Goal..." [(ngModel)]="goal.Description" ></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <mat-form-field style="width: 100%;" appearance="outline">
+                                <mat-label>Priority</mat-label>
+                                <mat-select [(ngModel)]="goal.Priority" name="priority">
+                                    <mat-option value="Very High">
+                                        Very High
+                                    </mat-option>
+                                    <mat-option value="High">
+                                        High
+                                    </mat-option>
+                                    <mat-option value="Medium">
+                                        Medium
+                                    </mat-option>
+                                    <mat-option value="Low">
+                                        Low
+                                    </mat-option>
+                                    <mat-option value="Very Low">
+                                        Very Low
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </ion-col>
+                    </ion-row>
                 </ion-col>
-                <ion-col size="3">
-                    <mat-form-field style="width: 100%;" appearance="outline">
-                        <mat-label>Priority</mat-label>
-                        <mat-select [(ngModel)]="goal.Priority" name="priority">
-                            <mat-option value="Very High">
-                                Very High
-                            </mat-option>
-                            <mat-option value="High">
-                                High
-                            </mat-option>
-                            <mat-option value="Medium">
-                                Medium
-                            </mat-option>
-                            <mat-option value="Low">
-                                Low
-                            </mat-option>
-                            <mat-option value="Very Low">
-                                Very Low
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <ion-col style="display: flex; align-items: center;" size="auto">
+                    <ion-button color="danger" (click)="this.onRemoveItemClick(this.ProjectGoals, i)">
+                        Remove
+                    </ion-button>
                 </ion-col>
             </ion-row>
         </div>
-        
     </mat-dialog-content>
     <mat-dialog-actions align="end"> 
-    <ion-button (click)="this.onCloseClick()">
-        Close
-    </ion-button>
-    <ion-button (click)="this.onSaveClick()">
-        Save Changes
-    </ion-button>
+        <ion-button color="danger" (click)="this.onCancelClick()">
+            Cancel
+        </ion-button>
+        <ion-button (click)="this.onSaveClick()">
+            Save Changes
+        </ion-button>
     </mat-dialog-actions>
 </div>

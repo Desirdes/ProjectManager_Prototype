@@ -29,6 +29,11 @@ export class NewProjectDialog {
     public Goals = [];
 
     // Public Methods
+
+    public onRemoveItemClick(parentArray, index){
+      parentArray.splice(index, 1);
+    }
+    
     public onAddRiskClick(){
       var newRisk = new Risk;
       this.Risks.push(newRisk);

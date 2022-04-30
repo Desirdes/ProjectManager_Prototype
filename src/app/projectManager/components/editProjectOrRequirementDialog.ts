@@ -37,6 +37,10 @@ export class EditProjectOrRequirementDialog {
 
     // Public Methods
 
+    public onRemoveItemClick(parentArray, index){
+      parentArray.splice(index, 1);
+    }
+
     public onAddRiskClick(){
       var newRisk = new Risk;
       this.ProjectRisks.push(newRisk);
@@ -69,7 +73,7 @@ export class EditProjectOrRequirementDialog {
       this.dialogRef.close();
     }
     
-    public onCloseClick(){
+    public onCancelClick(){
       this.dialogRef.close();
     }
 

@@ -54,7 +54,7 @@ export class AddTimeDialog {
         this.dialogRef.close();
     }
     
-    public onCloseClick(){
+    public onCancelClick(){
       this.dialogRef.close();
     }
 

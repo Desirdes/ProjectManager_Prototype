@@ -63,11 +63,11 @@
         </ion-row>
     </mat-dialog-content>
     <mat-dialog-actions align="end"> 
-    <ion-button (click)="this.onCloseClick()">
-        Close
-    </ion-button>
-    <ion-button (click)="this.onAddTimeClick()">
-        Add Time
-    </ion-button>
+        <ion-button color="danger" (click)="this.onCancelClick()">
+            Cancel
+        </ion-button>
+        <ion-button (click)="this.onAddTimeClick()">
+            Add Time
+        </ion-button>
     </mat-dialog-actions>
 </div>
