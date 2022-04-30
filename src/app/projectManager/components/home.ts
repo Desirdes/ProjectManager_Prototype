@@ -6,6 +6,7 @@ import { NewProjectDialog } from './newProjectDialog';
 import { NewRequirementDialog } from './newRequirementDialog';
 import { TimeSpentDialog } from './timeSpentDialog';
 import { AddTimeDialog } from './addTimeDialog';
+import { EditProjectOrRequirementDialog } from './editProjectOrRequirementDialog';
 
 @Component({
   selector: 'home-view',
@@ -61,6 +62,18 @@ export class HomeView implements OnInit {
         });
     }
 
+    public onEditClick(event, projectInfo, isRequirement, requirementInfo){
+        event.stopPropagation();
+        var dialogRef = this.dialog.open(EditProjectOrRequirementDialog,{
+            disableClose: true,
+            data: {
+                projectInfo: projectInfo,
+                isRequirement: isRequirement,
+                requirementInfo: requirementInfo
+            }
+        });
+    }
+
     // Private Methods
 
     private _getExistingProjects(){
@@ -72,7 +85,7 @@ export class HomeView implements OnInit {
         fakeProject.Title = "Example Project";
         fakeProject.Description = "This is an example project that is loaded automatically when viewing the project manager.";
         fakeProject.Owner = this.projectManagerProvider.Users[0];
-        fakeProject.TotalHoursSpent = 160;
+        fakeProject.TotalHoursSpent = 200;
         fakeProject.Members = [
             {
                 UserInfo: this.projectManagerProvider.Users[0],
@@ -121,6 +134,18 @@ export class HomeView implements OnInit {
                     Date: new Date(2022, 0, 16),
                     Hours: [{Hours: 20, ActivityType: "Testing"}]
                 }]
+            },
+            {
+                UserInfo: this.projectManagerProvider.Users[4],
+                Role: "member",
+                TotalHoursSpent: 40,
+                SpentHoursPerDate: [{
+                    Date: new Date(2022, 0, 15),
+                    Hours: [{Hours: 20, ActivityType: "Coding"}]
+                },{
+                    Date: new Date(2022, 0, 16),
+                    Hours: [{Hours: 20, ActivityType: "Coding"}]
+                }]
             }
         ];
         fakeProject.StartDate = new Date(2022, 0, 15);
@@ -139,7 +164,7 @@ export class HomeView implements OnInit {
                 Description: "An example of a task for a project that is meant to deal with the first functional requirement.",
                 Status: "In Progress",
                 Priority: "Low",
-                TotalHoursSpent: 80,
+                TotalHoursSpent: 100,
                 Members: [
                     {
                         UserInfo: this.projectManagerProvider.Users[0],
@@ -187,6 +212,18 @@ export class HomeView implements OnInit {
                         },{
                             Date: new Date(2022, 0, 16),
                             Hours: [{Hours: 10, ActivityType: "Testing"}]
+                        }]
+                    },
+                    {
+                        UserInfo: this.projectManagerProvider.Users[4],
+                        Role: "member",
+                        TotalHoursSpent: 20,
+                        SpentHoursPerDate: [{
+                            Date: new Date(2022, 0, 15),
+                            Hours: [{Hours: 10, ActivityType: "Coding"}]
+                        },{
+                            Date: new Date(2022, 0, 16),
+                            Hours: [{Hours: 10, ActivityType: "Coding"}]
                         }]
                     }
                 ],
@@ -200,7 +237,7 @@ export class HomeView implements OnInit {
                 Description: "An example of a task for a project that is meant to deal with the first non-functional requirement.",
                 Status: "In Progress",
                 Priority: "Low",
-                TotalHoursSpent: 80,
+                TotalHoursSpent: 100,
                 Members: [
                     {
                         UserInfo: this.projectManagerProvider.Users[0],
@@ -248,6 +285,18 @@ export class HomeView implements OnInit {
                         },{
                             Date: new Date(2022, 0, 16),
                             Hours: [{Hours: 10, ActivityType: "Testing"}]
+                        }]
+                    },
+                    {
+                        UserInfo: this.projectManagerProvider.Users[4],
+                        Role: "member",
+                        TotalHoursSpent: 20,
+                        SpentHoursPerDate: [{
+                            Date: new Date(2022, 0, 15),
+                            Hours: [{Hours: 10, ActivityType: "Coding"}]
+                        },{
+                            Date: new Date(2022, 0, 16),
+                            Hours: [{Hours: 10, ActivityType: "Coding"}]
                         }]
                     }
                 ],
