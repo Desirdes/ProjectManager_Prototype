@@ -41,6 +41,9 @@ export class AddTimeDialog {
 
                 member.SpentHoursPerDate.push(dateHours);
 
+                
+                this.data.requirement.TotalHoursSpent = +this.data.requirement.TotalHoursSpent + +totalHours;
+
                 this.data.projectInfo.Members.forEach(projMember => {
                     if(projMember.UserInfo.UserID == member.UserInfo.UserID){
                         projMember.TotalHoursSpent = +projMember.TotalHoursSpent + +totalHours;
